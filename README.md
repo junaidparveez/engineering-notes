@@ -29,9 +29,9 @@ progress is saved in the browser, notes are saved in IndexedDB.
 
 1. Import the repository in Vercel. The framework preset is detected as Vite;
    the `api/` folder becomes serverless functions automatically.
-2. Add the Upstash integration — `vercel install upstash`, or the Marketplace in
-   the dashboard. It injects `UPSTASH_REDIS_REST_URL` and
-   `UPSTASH_REDIS_REST_TOKEN`.
+2. Add a Redis store — **Storage → Create → Redis** in the dashboard, or
+   `vercel install upstash`. Either way it injects REST credentials, and the
+   code accepts both namings (see below); no copying tokens by hand.
 3. Set `NOTES_PASSCODE` to a long random string. This is the only thing
    protecting your notes; nothing else guards `/api/*`.
 4. **Settings → Git → Ignored Build Step:**
@@ -46,13 +46,22 @@ progress is saved in the browser, notes are saved in IndexedDB.
 
 ### Environment variables
 
-Three. Note what is *not* here: no GitHub token.
+One you set, two the store injects. Note what is *not* here: no GitHub token.
 
 | Name | Where from |
 |---|---|
 | `NOTES_PASSCODE` | you invent a long random string |
-| `UPSTASH_REDIS_REST_URL` | injected by the Upstash integration |
-| `UPSTASH_REDIS_REST_TOKEN` | injected by the Upstash integration |
+| `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN` | injected when Upstash is installed directly |
+| `KV_REST_API_URL` + `KV_REST_API_TOKEN` | injected when the store is created from **Storage** in the dashboard |
+
+`api/_redis.ts` tries those pairs in that order, so whichever your store
+provides is picked up as-is. The other variables that arrive alongside them are
+unused: `KV_REST_API_READ_ONLY_TOKEN` cannot write, and `KV_URL` / `REDIS_URL`
+are TCP connection strings — `@upstash/redis` speaks HTTP and cannot use them.
+
+Adding a variable does **not** change deployments that already exist. Redeploy
+after setting `NOTES_PASSCODE`, or it stays unset in production and every
+`/api/*` call answers 401.
 
 ---
 

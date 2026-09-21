@@ -1,5 +1,5 @@
-import { isAuthorised, json, unauthorised } from './_auth';
-import { KEYS, redis } from './_redis';
+import { isAuthorised, json, unauthorised } from './_auth.js';
+import { KEYS, redis } from './_redis.js';
 
 /**
  * Roadmap progress, shared between devices.

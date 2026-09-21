@@ -1,4 +1,4 @@
-import { isAuthorised, json, unauthorised } from './_auth';
+import { isAuthorised, json, unauthorised } from './_auth.js';
 
 /**
  * A proxy for exactly two GitHub endpoints, and nothing else.

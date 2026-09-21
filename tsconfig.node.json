@@ -3,6 +3,13 @@
     "target": "ES2022",
     "lib": ["ES2022"],
     "module": "ESNext",
+    // "bundler" accepts the extensionless relative imports Vite uses, so the
+    // relative imports under api/ carry an explicit .js anyway - do not strip
+    // them. Vercel transpiles each api/*.ts to its own .js rather than bundling
+    // them together, and package.json is "type": "module", so Node's ESM loader
+    // resolves those imports itself and rejects a missing extension. That fails
+    // only in production, at import time, as ERR_MODULE_NOT_FOUND before the
+    // handler runs - nothing here or in vitest catches it.
     "moduleResolution": "bundler",
     // @types/node supplies both process.env and the fetch-style Request/Response
     // globals the serverless functions are written against. Types only - nothing

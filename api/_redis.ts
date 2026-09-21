@@ -26,19 +26,53 @@ export const KEYS = {
 let client: Redis | null = null;
 
 /**
- * Reads the credentials the Upstash Vercel integration injects. Created once
- * per warm function instance rather than per request.
+ * The credential pairs Vercel may inject, in the order they are tried.
+ *
+ * Which pair exists depends on how the store was added: installing Upstash
+ * directly gives the UPSTASH_ names, while creating it from the dashboard's
+ * Storage tab (Marketplace) gives the KV_ ones. Both are the same REST API, so
+ * accepting either is cheaper than asking whoever deploys this to hand-copy a
+ * token into a second variable and keep the two in step.
+ *
+ * Deliberately absent: KV_REST_API_READ_ONLY_TOKEN, which authenticates but
+ * rejects every write, and KV_URL / REDIS_URL, which are TCP connection
+ * strings - @upstash/redis speaks HTTP and cannot use them.
+ */
+const CREDENTIALS = [
+  ['UPSTASH_REDIS_REST_URL', 'UPSTASH_REDIS_REST_TOKEN'],
+  ['KV_REST_API_URL', 'KV_REST_API_TOKEN'],
+] as const;
+
+/**
+ * Created once per warm function instance rather than per request.
  */
 export function redis(): Redis {
   if (!client) {
-    const url = process.env.UPSTASH_REDIS_REST_URL;
-    const token = process.env.UPSTASH_REDIS_REST_TOKEN;
-    if (!url || !token) {
-      throw new Error('Upstash is not configured: UPSTASH_REDIS_REST_URL / _TOKEN are missing');
+    for (const [urlName, tokenName] of CREDENTIALS) {
+      const url = process.env[urlName];
+      const token = process.env[tokenName];
+      if (url && token) {
+        client = new Redis({ url, token });
+        return client;
+      }
     }
-    client = new Redis({ url, token });
+    throw new Error(`Redis is not configured: ${describeMissing()}`);
   }
   return client;
+}
+
+/**
+ * Names only, never values, and only reachable behind the passcode gate. The
+ * usual failure is a store that was created but whose variables never reached
+ * this deployment, so saying which names did arrive is the whole diagnosis.
+ */
+function describeMissing(): string {
+  const wanted = CREDENTIALS.map(([url, token]) => `${url} + ${token}`).join(', or ');
+  const present = Object.keys(process.env)
+    .filter((name) => name.startsWith('KV_') || name.startsWith('UPSTASH_') || name === 'REDIS_URL')
+    .sort();
+  const found = present.length ? present.join(', ') : 'none';
+  return `expected ${wanted}. Redis-related variables on this deployment: ${found}`;
 }
 
 /** The stored shape of a note. Tags are a JSON array; everything else is flat. */

@@ -1,6 +1,6 @@
-import { isAuthorised, json, unauthorised } from './_auth';
-import { KEYS, redis, toStoredNote } from './_redis';
-import type { StoredNote } from './_redis';
+import { isAuthorised, json, unauthorised } from './_auth.js';
+import { KEYS, redis, toStoredNote } from './_redis.js';
+import type { StoredNote } from './_redis.js';
 
 /**
  * Note storage for cross-device drafts: one POST endpoint, four actions.
