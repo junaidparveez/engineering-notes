@@ -1,3 +1,4 @@
+import { webHandler } from './_handler.js';
 import { isAuthorised, json, unauthorised } from './_auth.js';
 
 /**
@@ -30,7 +31,7 @@ interface Body {
   device_code?: string;
 }
 
-export default async function handler(request: Request): Promise<Response> {
+async function handler(request: Request): Promise<Response> {
   if (request.method !== 'POST') return json({ error: 'Use POST' }, 405);
 
   // Gated by the same passcode as the notes. Not required by the flow - the
@@ -87,3 +88,6 @@ async function forward(url: string, params: Record<string, string>): Promise<Res
   const payload: unknown = await response.json().catch(() => ({ error: 'unparseable_response' }));
   return json(payload, response.ok ? 200 : response.status);
 }
+
+/** Converted at the boundary: Vercel calls this as (req, res). */
+export default webHandler(handler);

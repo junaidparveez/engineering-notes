@@ -1,3 +1,4 @@
+import { webHandler } from './_handler.js';
 import { isAuthorised, json, unauthorised } from './_auth.js';
 import { KEYS, redis } from './_redis.js';
 
@@ -27,7 +28,7 @@ interface Body {
   updatedAt?: number;
 }
 
-export default async function handler(request: Request): Promise<Response> {
+async function handler(request: Request): Promise<Response> {
   if (request.method !== 'POST') return json({ error: 'Use POST' }, 405);
   if (!isAuthorised(request)) return unauthorised();
 
@@ -69,3 +70,6 @@ export default async function handler(request: Request): Promise<Response> {
     return json({ error: error instanceof Error ? error.message : 'Upstash request failed' }, 500);
   }
 }
+
+/** Converted at the boundary: Vercel calls this as (req, res). */
+export default webHandler(handler);

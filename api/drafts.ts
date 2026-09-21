@@ -1,3 +1,4 @@
+import { webHandler } from './_handler.js';
 import { isAuthorised, json, unauthorised } from './_auth.js';
 import { KEYS, redis, toStoredNote } from './_redis.js';
 import type { StoredNote } from './_redis.js';
@@ -18,7 +19,7 @@ interface Body {
   deletedAt?: number;
 }
 
-export default async function handler(request: Request): Promise<Response> {
+async function handler(request: Request): Promise<Response> {
   if (request.method !== 'POST') return json({ error: 'Use POST' }, 405);
   if (!isAuthorised(request)) return unauthorised();
 
@@ -131,3 +132,6 @@ async function remove(path: string | undefined, deletedAt: number | undefined): 
 
   return json({ ok: true });
 }
+
+/** Converted at the boundary: Vercel calls this as (req, res). */
+export default webHandler(handler);
