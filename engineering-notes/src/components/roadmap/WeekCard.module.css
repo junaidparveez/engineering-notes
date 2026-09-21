@@ -1,0 +1,192 @@
+.weekCard {
+  overflow: hidden;
+}
+/* The current week is outlined so it is findable without scrolling for it. */
+.current {
+  border-color: rgba(94, 230, 210, 0.34);
+  box-shadow:
+    0 0 0 1px rgba(94, 230, 210, 0.05),
+    var(--shadow);
+}
+.current .weekNum {
+  background: linear-gradient(135deg, rgba(94, 230, 210, 0.16), rgba(106, 167, 255, 0.12));
+  border-color: rgba(94, 230, 210, 0.3);
+}
+
+.weekHead {
+  padding: 16px 17px;
+  display: grid;
+  grid-template-columns: 58px 1fr auto;
+  gap: 13px;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  color: inherit;
+}
+.weekHead:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: -2px;
+}
+
+.weekNum {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: rgba(106, 167, 255, 0.08);
+  border: 1px solid rgba(106, 167, 255, 0.18);
+  font-family: Manrope;
+}
+
+.weekTitle,
+.weekSide {
+  display: block;
+  min-width: 0;
+}
+.weekTitle b {
+  font-size: 14px;
+}
+.weekTitle span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+.weekSide {
+  text-align: right;
+}
+.weekSide b {
+  font-size: 12px;
+}
+.weekSide span {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.weekBody {
+  border-top: 1px solid var(--border);
+  padding: 4px 17px 15px;
+}
+
+.task {
+  display: grid;
+  grid-template-columns: 24px 82px 1fr;
+  gap: 9px;
+  align-items: start;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  width: 100%;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+}
+.task:last-child {
+  border-bottom: 0;
+}
+.task:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: -2px;
+}
+
+.check {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  border: 1px solid var(--border2);
+  display: grid;
+  place-items: center;
+  margin-top: 1px;
+}
+.done .check {
+  background: var(--green);
+  border-color: var(--green);
+  color: #042016;
+}
+.done .text {
+  text-decoration: line-through;
+  color: #61778c;
+}
+
+.kind {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--blue);
+  padding-top: 3px;
+}
+/* Task kinds keep the old app's colours. learn falls through to the blue above. */
+.kindBuild,
+.kindProof {
+  color: var(--cyan);
+}
+.kindDsa {
+  color: var(--amber);
+}
+.kindDesign {
+  color: var(--violet);
+}
+.kindCareer {
+  color: var(--rose);
+}
+.kindInterview {
+  color: #f3a6ff;
+}
+
+.text {
+  font-size: 12px;
+  color: #c7d6e5;
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .weekHead {
+    grid-template-columns: 48px 1fr;
+  }
+  .weekSide {
+    grid-column: 2;
+    text-align: left;
+  }
+  .task {
+    grid-template-columns: 24px 64px 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .weekHead {
+    padding: 13px 13px;
+    grid-template-columns: 40px 1fr;
+    gap: 10px;
+  }
+  .weekNum {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    font-size: 13px;
+  }
+  .weekBody {
+    padding: 4px 13px 13px;
+  }
+  /* The kind label moves above the text rather than stealing a third of the row. */
+  .task {
+    grid-template-columns: 20px 1fr;
+    gap: 8px;
+  }
+  .kind {
+    grid-column: 2;
+    padding-top: 0;
+  }
+  .text {
+    grid-column: 2;
+  }
+}

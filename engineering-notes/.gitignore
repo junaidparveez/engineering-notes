@@ -1,0 +1,10 @@
+node_modules
+dist
+.vercel
+*.local
+
+# Copied from the old single-file app as the source of truth for content and
+# design. Not part of the build; kept out of git so the port stays the only
+# version of this content that anyone edits.
+reference/
+*.tsbuildinfo

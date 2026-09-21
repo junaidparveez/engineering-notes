@@ -1,0 +1,44 @@
+.currentCard {
+  padding: 19px;
+}
+.currentTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+.currentCard h4 {
+  font-family: Manrope;
+  font-size: 20px;
+  margin: 12px 0 4px;
+}
+.currentCard > p {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 16px;
+}
+
+.focusList {
+  display: grid;
+  gap: 7px;
+}
+.focusItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 12px;
+  color: #c6d6e6;
+}
+/* The small glowing bullet. */
+.focusItem i {
+  width: 7px;
+  height: 7px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 12px rgba(94, 230, 210, 0.5);
+  flex: 0 0 auto;
+}
+
+.openWeek {
+  margin-top: 15px;
+}

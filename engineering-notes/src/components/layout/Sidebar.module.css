@@ -1,0 +1,125 @@
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 22px 16px;
+  border-right: 1px solid var(--border);
+  background: rgba(5, 14, 25, 0.76);
+  backdrop-filter: blur(20px);
+  z-index: 20;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 9px 22px;
+}
+.brandMark {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  display: grid;
+  place-items: center;
+  color: #04131d;
+  box-shadow: 0 10px 35px rgba(94, 230, 210, 0.2);
+  flex: 0 0 auto;
+}
+.brand h1 {
+  font-family: Manrope;
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+}
+.brand p {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.nav {
+  display: grid;
+  gap: 5px;
+}
+.nav a {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  padding: 10px 11px;
+  border-radius: 11px;
+  color: var(--muted);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.18s;
+  text-decoration: none;
+  /* 1px transparent border so the active state does not shift the row by a pixel. */
+  border: 1px solid transparent;
+}
+.nav a:hover {
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text);
+}
+.nav a.active {
+  background: linear-gradient(90deg, rgba(94, 230, 210, 0.12), rgba(106, 167, 255, 0.08));
+  color: #fff;
+  border-color: rgba(94, 230, 210, 0.18);
+}
+.nav a:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+.nav svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+.sideBottom {
+  position: absolute;
+  bottom: 18px;
+  left: 16px;
+  right: 16px;
+}
+.miniProgress {
+  padding: 13px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.miniProgressTop {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+@media (max-width: 1050px) {
+  .sidebar {
+    padding: 18px 10px;
+  }
+  .brand {
+    justify-content: center;
+    padding: 4px 0 20px;
+  }
+  .brand .brandText,
+  .nav a span,
+  .sideBottom {
+    display: none;
+  }
+  .nav a {
+    justify-content: center;
+    padding: 11px;
+  }
+}
+
+@media (max-width: 720px) {
+  .sidebar {
+    display: none;
+  }
+}

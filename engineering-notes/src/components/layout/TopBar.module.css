@@ -1,0 +1,28 @@
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.topbar h2 {
+  font-family: Manrope;
+  margin: 5px 0 0;
+  font-size: clamp(22px, 3vw, 34px);
+  letter-spacing: -0.04em;
+}
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    align-items: flex-start;
+  }
+  .actions :global(.btn) span {
+    display: none;
+  }
+}

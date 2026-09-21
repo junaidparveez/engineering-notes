@@ -1,0 +1,44 @@
+.mobileNav {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .mobileNav {
+    display: flex;
+    position: fixed;
+    left: 9px;
+    right: 9px;
+    bottom: 9px;
+    padding: 7px;
+    background: rgba(7, 17, 29, 0.93);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border2);
+    border-radius: 15px;
+    z-index: 50;
+    overflow: auto;
+    gap: 5px;
+  }
+  .mobileNav a {
+    flex: 0 0 auto;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    padding: 9px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    text-decoration: none;
+  }
+  .mobileNav a.active {
+    background: rgba(94, 230, 210, 0.09);
+    color: var(--cyan);
+  }
+  .mobileNav a:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+  }
+  .mobileNav svg {
+    width: 18px;
+    height: 18px;
+  }
+}

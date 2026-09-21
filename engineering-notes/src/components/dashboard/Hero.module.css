@@ -1,0 +1,58 @@
+.hero {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.heroCopy {
+  padding: 27px;
+  position: relative;
+  overflow: hidden;
+}
+/* The soft glow in the top-right corner. Decorative, so it ignores pointers. */
+.heroCopy::after {
+  content: '';
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  border-radius: 50%;
+  right: -120px;
+  top: -145px;
+  background: radial-gradient(circle, rgba(94, 230, 210, 0.16), transparent 68%);
+  pointer-events: none;
+}
+.heroCopy h3 {
+  font-family: Manrope;
+  font-size: clamp(27px, 4vw, 46px);
+  letter-spacing: -0.055em;
+  line-height: 1.05;
+  margin: 10px 0 13px;
+  max-width: 800px;
+}
+.heroCopy p {
+  color: var(--muted);
+  max-width: 830px;
+  line-height: 1.65;
+  margin: 0;
+  font-size: 14px;
+}
+
+.heroChips {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+@media (max-width: 1050px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .heroCopy {
+    padding: 21px;
+  }
+}

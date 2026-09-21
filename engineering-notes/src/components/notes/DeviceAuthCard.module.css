@@ -1,0 +1,115 @@
+.card {
+  border: 1px solid var(--border2);
+  background: rgba(255, 255, 255, 0.025);
+  border-radius: 13px;
+  padding: 16px;
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+.heading svg {
+  width: 16px;
+  height: 16px;
+  color: var(--cyan);
+}
+
+.hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.codeRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Large and monospaced: this gets read off the screen and typed elsewhere. */
+.userCode {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 26px;
+  letter-spacing: 0.18em;
+  color: var(--cyan);
+  background: rgba(4, 12, 22, 0.6);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.authorised {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--green);
+}
+.authorised svg {
+  width: 16px;
+  height: 16px;
+}
+
+.error {
+  margin: 0;
+  color: #ffb0bd;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+@media (max-width: 720px) {
+  .userCode {
+    font-size: 21px;
+  }
+}
+
+/* The wrong-account warning: quiet but unmissable. */
+.warning {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #d8c89f;
+  border: 1px solid rgba(247, 200, 115, 0.22);
+  background: rgba(247, 200, 115, 0.05);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.warning code {
+  color: var(--text);
+  word-break: break-all;
+}
+
+.details {
+  font-size: 11px;
+  color: var(--faint);
+}
+.details summary {
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 420px) {
+  .card {
+    padding: 13px;
+  }
+  .userCode {
+    font-size: 18px;
+    letter-spacing: 0.12em;
+    padding: 9px 10px;
+  }
+  .codeRow {
+    gap: 7px;
+  }
+  .codeRow .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}

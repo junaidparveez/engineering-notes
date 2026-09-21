@@ -1,0 +1,36 @@
+.app {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.main {
+  min-width: 0;
+  padding: 26px 34px 70px;
+}
+.shell {
+  max-width: 1320px;
+  margin: auto;
+}
+
+.footerNote {
+  margin-top: 20px;
+  color: var(--faint);
+  font-size: 10px;
+  text-align: center;
+}
+
+@media (max-width: 1050px) {
+  .app {
+    grid-template-columns: 82px 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .app {
+    display: block;
+  }
+  .main {
+    padding: 18px 14px 88px;
+  }
+}

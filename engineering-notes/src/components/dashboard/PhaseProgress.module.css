@@ -1,0 +1,30 @@
+.timeline {
+  padding: 17px;
+}
+.phaseRow {
+  display: grid;
+  grid-template-columns: 125px 1fr 52px;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.phaseRow:last-child {
+  border: 0;
+}
+.phaseRow b {
+  font-size: 12px;
+}
+.phaseRow span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.phasePct {
+  font-size: 11px;
+}
+
+@media (max-width: 720px) {
+  .phaseRow {
+    grid-template-columns: 100px 1fr 42px;
+  }
+}

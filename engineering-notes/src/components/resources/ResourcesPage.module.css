@@ -1,0 +1,38 @@
+.resourceGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.resource {
+  padding: 14px 15px;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+.resource b {
+  font-size: 12px;
+}
+.resource span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 3px;
+}
+.resource svg {
+  width: 16px;
+  color: var(--cyan);
+  flex: 0 0 auto;
+}
+.resource:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+@media (max-width: 720px) {
+  .resourceGrid {
+    grid-template-columns: 1fr;
+  }
+}

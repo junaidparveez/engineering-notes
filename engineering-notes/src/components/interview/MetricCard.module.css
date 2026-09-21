@@ -1,0 +1,81 @@
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 11px;
+}
+
+.metric {
+  padding: 16px;
+}
+.metricTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.metricTop b {
+  font-size: 12px;
+}
+.metricTop span {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 13px 0 10px;
+}
+.counter button {
+  width: 31px;
+  height: 31px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.035);
+  cursor: pointer;
+}
+.counter button:focus-visible,
+.counter input:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+.counter input {
+  width: 70px;
+  text-align: center;
+  background: transparent;
+  color: var(--text);
+  border: 0;
+  font-size: 22px;
+  font-family: Manrope;
+  outline: 0;
+}
+
+.metric small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 7px;
+}
+
+@media (max-width: 1050px) {
+  .metricGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .metricGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .counter button {
+    width: 38px;
+    height: 38px;
+  }
+  .counter input {
+    width: 60px;
+    font-size: 20px;
+  }
+}

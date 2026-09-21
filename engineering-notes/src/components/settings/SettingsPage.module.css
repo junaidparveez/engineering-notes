@@ -1,0 +1,66 @@
+.settingsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.setting {
+  padding: 17px;
+}
+.setting label {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 7px;
+}
+
+/* The small grey explanation under each control. */
+.hint {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.buttonRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Feedback after an import, in place of the old app's alert(). */
+.result {
+  margin-top: 10px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.ok {
+  color: var(--green);
+}
+.error {
+  color: var(--rose);
+}
+
+@media (max-width: 720px) {
+  .settingsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Publishing target: a small form inside the settings card. */
+.targetFields {
+  display: grid;
+  gap: 9px;
+  margin-bottom: 11px;
+}
+.fieldLabel {
+  display: block;
+  font-size: 10px;
+  color: var(--faint);
+  margin-bottom: 4px;
+}
+.fieldError {
+  margin: 4px 0 0;
+  font-size: 10px;
+  line-height: 1.5;
+  color: #ffb0bd;
+}

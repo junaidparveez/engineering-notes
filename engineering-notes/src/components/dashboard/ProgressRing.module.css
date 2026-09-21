@@ -1,0 +1,70 @@
+.progressCard {
+  padding: 22px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
+/*
+ * The ring is a conic-gradient driven by the --p custom property rather than an
+ * SVG: one element, no viewBox maths, and the fill animates by changing a
+ * number. The inner disc is the ::after, which masks the middle.
+ */
+.ring {
+  --p: 0;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(var(--cyan) calc(var(--p) * 1%), rgba(255, 255, 255, 0.06) 0);
+  position: relative;
+}
+.ring::after {
+  content: '';
+  width: 136px;
+  height: 136px;
+  border-radius: 50%;
+  background: #0b1b2c;
+  position: absolute;
+  inset: 17px;
+}
+.inside {
+  position: relative;
+  z-index: 1;
+}
+.inside b {
+  font-family: Manrope;
+  font-size: 34px;
+}
+.inside span {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.progressCard h4 {
+  margin: 15px 0 5px;
+}
+.progressCard p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  max-width: 240px;
+}
+
+@media (max-width: 420px) {
+  .ring {
+    width: 140px;
+    height: 140px;
+  }
+  .ring::after {
+    width: 110px;
+    height: 110px;
+    inset: 15px;
+  }
+  .inside b {
+    font-size: 28px;
+  }
+}

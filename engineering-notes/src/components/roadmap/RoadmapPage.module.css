@@ -1,0 +1,4 @@
+.weekList {
+  display: grid;
+  gap: 12px;
+}
